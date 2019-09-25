@@ -50,3 +50,16 @@ if ( ! function_exists( 'hearth_add_site_info' ) ) {
 		echo apply_filters( 'hearth_site_info_content', $site_info ); // WPCS: XSS ok.
 	}
 }
+
+
+add_filter( 'woocommerce_breadcrumb_defaults', 'jk_woocommerce_breadcrumbs' );
+function jk_woocommerce_breadcrumbs() {
+    return array(
+            'delimiter'   => ' &#47; ',
+            'wrap_before' => '<div class="breadcrumb" itemprop="breadcrumb">',
+            'wrap_after'  => '</div>',
+            'before'      => '',
+            'after'       => '',
+            'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+        );
+}
